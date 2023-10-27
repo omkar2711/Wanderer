@@ -1,33 +1,34 @@
-import React from 'react'
-import {Autocomplete} from '@react-google-maps/api'
-import {AppBar, Toolbar, Typography, InputBase, Box} from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import useStyles from './styles'
+import React from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  headerDiv: {
+    backgroundColor: '#151515', // Customize the background color
+    padding: theme.spacing(2), // Customize the padding
+    // Add any other styles you want for .header-div
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+    color: 'white', // Customize the text color
+    fontSize: '24px', // Customize the font size
+    fontWeight: 'bold', // Customize the font weight
+  },
+}));
 
 const Header = () => {
-  const classes = useStyles()
-  return (
-    <AppBar position="static">
-      <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.titel}>
-            Wanderer
-        </Typography>
-        <Box display="flex">
-          <Typography variant="h6" className={classes.titel}>
-            Explore new places
-        </Typography>
-        {/* <Autocomplete> */}
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon/>
-            </div>
-            <InputBase placeholder="Search..." classes={{root: classes.inputRoot, input: classes.inputInput}}/>
-          </div>
-        {/* </Autocomplete> */}
-        </Box>
-      </Toolbar>
-    </AppBar>
-  )
-}
+  const classes = useStyles();
 
-export default Header
+  return (
+    <div className={classes.headerDiv}>
+        <Typography variant="h5" className={classes.title}>
+          Wanderer
+        </Typography>
+    </div>
+  );
+};
+
+export default Header;
